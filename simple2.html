@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bustabieren - Ultra Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-link {
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Main */
+        .main {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Import Section */
+        .import-section {
+            margin-bottom: 20px;
+        }
+
+        .import-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+
+        /* Practice Section */
+        .practice-section {
+            text-align: center;
+        }
+
+        .flashcard {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin: 0 auto 20px;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .hint {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .answer-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 10px auto;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .btn-check {
+            padding: 12px 30px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result-word {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-translation {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .btn-next {
+            background: #2196F3;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .flashcard {
+                padding: 20px;
+            }
+            
+            .play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 20px;
+            }
+            
+            .answer-input {
+                font-size: 18px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">🐝 Bustabieren</div>
+            <nav class="nav">
+                <a href="#" onclick="showImport()" class="nav-link">📥 Importar</a>
+                <a href="index.html" class="nav-link">Menú</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <h1 class="title">Practicar Alemán</h1>
+            
+            <!-- Import Section -->
+            <div class="import-section" id="importSection">
+                <p class="import-title">Paso 1: Importa tus palabras</p>
+                <input type="file" id="fileInput" accept=".csv" style="display: none;" onchange="handleFile()">
+                <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Seleccionar CSV</button>
+                <button class="btn btn-secondary" onclick="downloadTemplate()">Descargar Plantilla</button>
+                <p id="fileInfo" style="margin-top: 10px; font-size: 14px; color: #666;"></p>
+                <button class="btn btn-primary" onclick="startPractice()" style="margin-top: 10px;">Empezar a Practicar</button>
+            </div>
+
+            <!-- Practice Section -->
+            <div class="practice-section" id="practiceSection" style="display: none;">
+                <div class="flashcard">
+                    <button class="play-btn" onclick="playWord()">▶</button>
+                    <p class="hint">Escucha y escribe la palabra</p>
+                    <input type="text" class="answer-input" id="answerInput" placeholder="Escribe aquí..." 
+                           onkeydown="if(event.key==='Enter') checkAnswer()">
+                    <button class="btn-check" onclick="checkAnswer()">Verificar</button>
+                    
+                    <div class="result" id="result">
+                        <div class="result-word" id="resultWord"></div>
+                        <div class="result-translation" id="resultTranslation"></div>
+                        <button class="btn-next" onclick="nextWord()">Siguiente →</button>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-label">Correctas</span>
+                        <span class="stat-value" id="correctCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Incorrectas</span>
+                        <span class="stat-value" id="incorrectCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Total</span>
+                        <span class="stat-value" id="totalWords">0</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // State
+        let words = [];
+        let currentIndex = 0;
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let synth = window.speechSynthesis;
+        let currentUtterance = null;
+
+        // DOM
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const importSection = document.getElementById('importSection');
+        const practiceSection = document.getElementById('practiceSection');
+        const answerInput = document.getElementById('answerInput');
+        const result = document.getElementById('result');
+        const resultWord = document.getElementById('resultWord');
+        const resultTranslation = document.getElementById('resultTranslation');
+
+        // Load words
+        function loadWords() {
+            const saved = localStorage.getItem('bustabierenUltraWords');
+            if (saved) {
+                words = JSON.parse(saved);
+            }
+        }
+
+        // Save words
+        function saveWords() {
+            localStorage.setItem('bustabierenUltraWords', JSON.stringify(words));
+        }
+
+        // Show import
+        function showImport() {
+            importSection.style.display = 'block';
+            practiceSection.style.display = 'none';
+        }
+
+        // Handle file
+        function handleFile() {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            fileInfo.textContent = `Archivo: ${file.name}`;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                parseCSV(e.target.result);
+            };
+            reader.readAsText(file);
+        }
+
+        // Parse CSV
+        function parseCSV(content) {
+            const lines = content.split('\n');
+            const newWords = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Split by comma, but handle commas in quotes
+                const parts = line.split(',').map(p => p.trim().replace(/^"|"$/g, ''));
+                
+                if (parts[0]) {
+                    newWords.push({
+                        word: parts[0],
+                        translation: parts[1] || ''
+                    });
+                }
+            }
+
+            if (newWords.length > 0) {
+                words = newWords;
+                saveWords();
+                fileInfo.textContent += ` - ${newWords.length} palabras`;
+            }
+        }
+
+        // Download template
+        function downloadTemplate() {
+            const csv = `Palabra en Alemán,Traducción
+Apfel,Manzana
+Haus,Casa
+Buch,Libro
+Schule,Escuela
+Arbeit,Trabajo`;
+
+            const blob = new Blob([csv], {type: 'text/csv'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'palabras.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Start practice
+        function startPractice() {
+            if (words.length === 0) {
+                alert('Primero importa palabras');
+                return;
+            }
+
+            importSection.style.display = 'none';
+            practiceSection.style.display = 'block';
+            
+            // Shuffle
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
+            }
+            
+            currentIndex = 0;
+            showWord();
+        }
+
+        // Show word
+        function showWord() {
+            answerInput.value = '';
+            result.classList.remove('show');
+            answerInput.focus();
+            
+            document.getElementById('totalWords').textContent = words.length;
+        }
+
+        // Play word - MEJORADO para voz más clara
+        function playWord() {
+            // Cancel any ongoing speech
+            synth.cancel();
+
+            if (!words[currentIndex]) return;
+
+            // Create utterance
+            const utterance = new SpeechSynthesisUtterance(words[currentIndex].word);
+            
+            // Set to German with clear voice
+            utterance.lang = 'de-DE';
+            utterance.rate = 0.9;  // Más lento para mejor comprensión
+            utterance.pitch = 1;
+            utterance.volume = 1;
+
+            // Try to find the best German voice
+            const voices = synth.getVoices();
+            const germanVoices = voices.filter(v => v.lang.includes('de'));
+            
+            // Prefer female voice if available (usually clearer)
+            const preferredVoice = germanVoices.find(v => v.name.includes('Female')) ||
+                                  germanVoices.find(v => v.name.includes('Frau')) ||
+                                  germanVoices[0];
+            
+            if (preferredVoice) {
+                utterance.voice = preferredVoice;
+            }
+
+            // Visual feedback
+            const playBtn = document.querySelector('.play-btn');
+            playBtn.textContent = '⏳';
+            
+            utterance.onend = () => {
+                playBtn.textContent = '▶';
+            };
+
+            utterance.onerror = () => {
+                playBtn.textContent = '▶';
+                alert('Error al reproducir. Prueba con Chrome o Edge.');
+            };
+
+            synth.speak(utterance);
+        }
+
+        // Check answer - CORREGIDO para aceptar espacios
+        function checkAnswer() {
+            const userAnswer = answerInput.value.trim();
+            const correctAnswer = words[currentIndex].word;
+
+            if (!userAnswer) {
+                return;
+            }
+
+            // Comparar SIN importar mayúsculas/minúsculas
+            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                correctCount++;
+            } else {
+                incorrectCount++;
+            }
+
+            // Show result
+            resultWord.textContent = correctAnswer;
+            resultTranslation.textContent = words[currentIndex].translation || '';
+            result.classList.add('show');
+            
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('incorrectCount').textContent = incorrectCount;
+        }
+
+        // Next word
+        function nextWord() {
+            currentIndex++;
+            
+            if (currentIndex >= words.length) {
+                resultWord.textContent = '¡Todas completadas!';
+                resultTranslation.textContent = `Correctas: ${correctCount}/${words.length}`;
+                return;
+            }
+
+            showWord();
+        }
+
+        // Load voices when available
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = () => {
+                // Voices loaded
+            };
+        }
+
+        // Initialize
+        loadWords();
+    </script>
+</body>
+</html>
