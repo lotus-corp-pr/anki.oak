@@ -1,0 +1,329 @@
+{
+  "level": "A2",
+  "name": "Básico",
+  "description": "Vocabulario diario para nivel A2",
+  "words": [
+    {
+      "id": 41,
+      "word": "Schule",
+      "translation": "Escuela",
+      "audio": "schule.mp3",
+      "category": "Educación",
+      "difficulty": 1
+    },
+    {
+      "id": 42,
+      "word": "Arbeit",
+      "translation": "Trabajo",
+      "audio": "arbeit.mp3",
+      "category": "Trabajo",
+      "difficulty": 1
+    },
+    {
+      "id": 43,
+      "word": "Zeit",
+      "translation": "Tiempo",
+      "audio": "zeit.mp3",
+      "category": "Tiempo",
+      "difficulty": 1
+    },
+    {
+      "id": 44,
+      "word": "Geld",
+      "translation": "Dinero",
+      "audio": "geld.mp3",
+      "category": "Economía",
+      "difficulty": 1
+    },
+    {
+      "id": 45,
+      "word": "Freund",
+      "translation": "Amigo",
+      "audio": "freund.mp3",
+      "category": "Relaciones",
+      "difficulty": 1
+    },
+    {
+      "id": 46,
+      "word": "Freundin",
+      "translation": "Amiga",
+      "audio": "freundin.mp3",
+      "category": "Relaciones",
+      "difficulty": 2
+    },
+    {
+      "id": 47,
+      "word": "Familie",
+      "translation": "Familia",
+      "audio": "familie.mp3",
+      "category": "Familia",
+      "difficulty": 1
+    },
+    {
+      "id": 48,
+      "word": "Stadt",
+      "translation": "Ciudad",
+      "audio": "stadt.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 49,
+      "word": "Dorf",
+      "translation": "Pueblo",
+      "audio": "dorf.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 50,
+      "word": "Land",
+      "translation": "País",
+      "audio": "land.mp3",
+      "category": "Geografía",
+      "difficulty": 1
+    },
+    {
+      "id": 51,
+      "word": "Sprache",
+      "translation": "Idioma",
+      "audio": "sprache.mp3",
+      "category": "Educación",
+      "difficulty": 1
+    },
+    {
+      "id": 52,
+      "word": "Reise",
+      "translation": "Viaje",
+      "audio": "reise.mp3",
+      "category": "Viajes",
+      "difficulty": 1
+    },
+    {
+      "id": 53,
+      "word": "Zug",
+      "translation": "Tren",
+      "audio": "zug.mp3",
+      "category": "Transporte",
+      "difficulty": 1
+    },
+    {
+      "id": 54,
+      "word": "Auto",
+      "translation": "Coche",
+      "audio": "auto.mp3",
+      "category": "Transporte",
+      "difficulty": 1
+    },
+    {
+      "id": 55,
+      "word": "Fahrrad",
+      "translation": "Bicicleta",
+      "audio": "fahrrad.mp3",
+      "category": "Transporte",
+      "difficulty": 2
+    },
+    {
+      "id": 56,
+      "word": "Flugzeug",
+      "translation": "Avión",
+      "audio": "flugzeug.mp3",
+      "category": "Transporte",
+      "difficulty": 2
+    },
+    {
+      "id": 57,
+      "word": "Schiff",
+      "translation": "Barco",
+      "audio": "schiff.mp3",
+      "category": "Transporte",
+      "difficulty": 1
+    },
+    {
+      "id": 58,
+      "word": "Kino",
+      "translation": "Cine",
+      "audio": "kino.mp3",
+      "category": "Ocio",
+      "difficulty": 1
+    },
+    {
+      "id": 59,
+      "word": "Theater",
+      "translation": "Teatro",
+      "audio": "theater.mp3",
+      "category": "Ocio",
+      "difficulty": 1
+    },
+    {
+      "id": 60,
+      "word": "Museum",
+      "translation": "Museo",
+      "audio": "museum.mp3",
+      "category": "Ocio",
+      "difficulty": 1
+    },
+    {
+      "id": 61,
+      "word": "Restaurant",
+      "translation": "Restaurante",
+      "audio": "restaurant.mp3",
+      "category": "Comida",
+      "difficulty": 2
+    },
+    {
+      "id": 62,
+      "word": "Café",
+      "translation": "Cafetería",
+      "audio": "cafe.mp3",
+      "category": "Comida",
+      "difficulty": 1
+    },
+    {
+      "id": 63,
+      "word": "Supermarkt",
+      "translation": "Supermercado",
+      "audio": "supermarkt.mp3",
+      "category": "Compras",
+      "difficulty": 2
+    },
+    {
+      "id": 64,
+      "word": "Geschäft",
+      "translation": "Tienda",
+      "audio": "geschaeft.mp3",
+      "category": "Compras",
+      "difficulty": 1
+    },
+    {
+      "id": 65,
+      "word": "Krankenhaus",
+      "translation": "Hospital",
+      "audio": "krankenhaus.mp3",
+      "category": "Salud",
+      "difficulty": 2
+    },
+    {
+      "id": 66,
+      "word": "Arzt",
+      "translation": "Médico",
+      "audio": "arzt.mp3",
+      "category": "Salud",
+      "difficulty": 1
+    },
+    {
+      "id": 67,
+      "word": "Apotheke",
+      "translation": "Farmacia",
+      "audio": "apotheke.mp3",
+      "category": "Salud",
+      "difficulty": 2
+    },
+    {
+      "id": 68,
+      "word": "Polizei",
+      "translation": "Policía",
+      "audio": "polizei.mp3",
+      "category": "Seguridad",
+      "difficulty": 1
+    },
+    {
+      "id": 69,
+      "word": "Feuerwehr",
+      "translation": "Bomberos",
+      "audio": "feuerwehr.mp3",
+      "category": "Seguridad",
+      "difficulty": 2
+    },
+    {
+      "id": 70,
+      "word": "Post",
+      "translation": "Oficina de correos",
+      "audio": "post.mp3",
+      "category": "Servicios",
+      "difficulty": 1
+    },
+    {
+      "id": 71,
+      "word": "Bank",
+      "translation": "Banco",
+      "audio": "bank.mp3",
+      "category": "Servicios",
+      "difficulty": 1
+    },
+    {
+      "id": 72,
+      "word": "Hotel",
+      "translation": "Hotel",
+      "audio": "hotel.mp3",
+      "category": "Alojamiento",
+      "difficulty": 1
+    },
+    {
+      "id": 73,
+      "word": "Wohnung",
+      "translation": "Apartamento",
+      "audio": "wohnung.mp3",
+      "category": "Alojamiento",
+      "difficulty": 2
+    },
+    {
+      "id": 74,
+      "word": "Straße",
+      "translation": "Calle",
+      "audio": "strasse.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 75,
+      "word": "Platz",
+      "translation": "Plaza",
+      "audio": "platz.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 76,
+      "word": "Park",
+      "translation": "Parque",
+      "audio": "park.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 77,
+      "word": "Brücke",
+      "translation": "Puente",
+      "audio": "bruecke.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 78,
+      "word": "Bahnhof",
+      "translation": "Estación de tren",
+      "audio": "bahnhof.mp3",
+      "category": "Transporte",
+      "difficulty": 2
+    },
+    {
+      "id": 79,
+      "word": "Flughafen",
+      "translation": "Aeropuerto",
+      "audio": "flughafen.mp3",
+      "category": "Transporte",
+      "difficulty": 2
+    },
+    {
+      "id": 80,
+      "word": "Hafen",
+      "translation": "Puerto",
+      "audio": "hafen.mp3",
+      "category": "Transporte",
+      "difficulty": 1
+    }
+  ],
+  "totalWords": 40,
+  "categories": ["Educación", "Trabajo", "Tiempo", "Economía", "Relaciones", "Lugares", "Geografía", "Viajes", "Transporte", "Ocio", "Comida", "Compras", "Salud", "Seguridad", "Servicios", "Alojamiento"]
+}

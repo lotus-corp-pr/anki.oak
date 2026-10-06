@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competencia - Bustabieren</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/competition.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐝</span>
+                <h1 class="logo-text">Bustabieren</h1>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="practice.html" class="nav-link">Practicar</a>
+                <a href="#" class="nav-link">Competencia</a>
+            </nav>
+            <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <main class="competition-main">
+        <div class="container">
+            <div class="competition-header">
+                <h1 class="competition-title">Modo <span class="highlight">Competencia</span></h1>
+                <p class="competition-subtitle">Compite con otros jugadores en tiempo real</p>
+                
+                <div class="competition-options">
+                    <button class="btn btn-primary" id="joinPublicBtn">Unirse a Partida Pública</button>
+                    <button class="btn btn-secondary" id="createPrivateBtn">Crear Sala Privada</button>
+                </div>
+            </div>
+
+            <!-- Lobby Section -->
+            <div class="lobby-section hidden" id="lobbySection">
+                <div class="lobby-container">
+                    <div class="lobby-header">
+                        <h2 class="lobby-title" id="lobbyTitle">Sala de Espera</h2>
+                        <p class="lobby-subtitle" id="lobbySubtitle">Esperando a que comience la partida...</p>
+                    </div>
+                    
+                    <div class="lobby-content">
+                        <div class="room-info">
+                            <div class="info-item">
+                                <span class="info-label">ID de la Sala:</span>
+                                <span class="info-value room-id" id="roomId">ABC123</span>
+                                <button class="copy-btn" id="copyRoomId" title="Copiar ID">📋</button>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Nivel:</span>
+                                <span class="info-value" id="roomLevel">A1 - B2</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Tiempo por palabra:</span>
+                                <span class="info-value" id="roomTime">15 segundos</span>
+                            </div>
+                        </div>
+                        
+                        <div class="players-list">
+                            <h3 class="players-title">Jugadores (<span id="playerCount">1</span>/4)</h3>
+                            <div class="players-grid" id="playersGrid">
+                                <!-- Players will be added here -->
+                            </div>
+                        </div>
+                        
+                        <div class="lobby-actions">
+                            <button class="btn btn-secondary" id="changeSettingsBtn">Cambiar Configuración</button>
+                            <button class="btn btn-primary" id="startGameBtn">Empezar Partida</button>
+                            <button class="btn btn-danger" id="leaveLobbyBtn">Abandonar Sala</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Section -->
+            <div class="game-section hidden" id="gameSection">
+                <div class="game-container">
+                    <div class="game-header">
+                        <div class="game-timer">
+                            <span class="timer-icon">⏰</span>
+                            <span class="timer-value" id="gameTimer">15:00</span>
+                        </div>
+                        <div class="game-score">
+                            <span class="score-label">Puntuación:</span>
+                            <span class="score-value" id="gameScore">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-content">
+                        <div class="game-question">
+                            <div class="audio-player">
+                                <button class="play-btn" id="gamePlayBtn" title="Reproducir audio">
+                                    <span class="play-icon">▶</span>
+                                    <span class="wave-icon">🎵</span>
+                                </button>
+                            </div>
+                            <p class="question-hint">Escucha la palabra y escríbela</p>
+                        </div>
+                        
+                        <div class="game-answer">
+                            <input 
+                                type="text" 
+                                id="gameWordInput" 
+                                class="word-input" 
+                                placeholder="Escribe aquí..."
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            />
+                            <button class="btn btn-primary" id="gameSubmitBtn">Enviar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-footer">
+                        <div class="opponents-list">
+                            <h4 class="opponents-title">Oponentes</h4>
+                            <div class="opponents-grid" id="opponentsGrid">
+                                <!-- Opponents will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section hidden" id="resultsSection">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2 class="results-title">¡Partida Terminada!</h2>
+                        <p class="results-subtitle" id="resultsSubtitle">Resultados finales</p>
+                    </div>
+                    
+                    <div class="results-content">
+                        <div class="podium" id="podium">
+                            <!-- Podium positions will be added here -->
+                        </div>
+                        
+                        <div class="results-table">
+                            <h3 class="table-title">Clasificación</h3>
+                            <table class="table" id="resultsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Posición</th>
+                                        <th>Jugador</th>
+                                        <th>Puntuación</th>
+                                        <th>Precisión</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsTableBody">
+                                    <!-- Results will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="results-stats">
+                            <div class="stat-card">
+                                <h4 class="stat-card-title">Tus Estadísticas</h4>
+                                <div class="stat-grid">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Puntuación:</span>
+                                        <span class="stat-value" id="finalScore">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Correctas:</span>
+                                        <span class="stat-value" id="finalCorrect">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Incorrectas:</span>
+                                        <span class="stat-value" id="finalIncorrect">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Precisión:</span>
+                                        <span class="stat-value" id="finalAccuracy">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-primary" id="playAgainBtn">Jugar de Nuevo</button>
+                        <button class="btn btn-secondary" id="backToLobbyBtn">Volver al Lobby</button>
+                        <button class="btn btn-outline" id="backToHomeBtn">Volver al Inicio</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Games List -->
+            <div class="public-games-section hidden" id="publicGamesSection">
+                <div class="public-games-container">
+                    <div class="public-games-header">
+                        <h2 class="public-games-title">Partidas Públicas Disponibles</h2>
+                        <button class="btn btn-secondary" id="refreshGamesBtn">↻ Actualizar</button>
+                    </div>
+                    
+                    <div class="games-list" id="gamesList">
+                        <!-- Public games will be listed here -->
+                        <div class="no-games">
+                            <p>No hay partidas públicas disponibles</p>
+                            <p>Crea una sala privada o espera a que alguien cree una</p>
+                        </div>
+                    </div>
+                    
+                    <div class="public-games-actions">
+                        <button class="btn btn-primary" id="createPublicBtn">Crear Partida Pública</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div class="modal hidden" id="settingsModal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Configuración de la Sala</h2>
+                        <button class="modal-close" id="modalCloseSettings">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="settingsForm">
+                            <div class="form-group">
+                                <label for="gameLevel" class="form-label">Nivel de Dificultad</label>
+                                <select id="gameLevel" class="form-select">
+                                    <option value="a1">A1 - Principiante</option>
+                                    <option value="a2">A2 - Básico</option>
+                                    <option value="b1">B1 - Intermedio</option>
+                                    <option value="b2">B2 - Intermedio Alto</option>
+                                    <option value="c1">C1 - Avanzado</option>
+                                    <option value="mixed" selected>Mixto (A1 - B2)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timePerWord" class="form-label">Tiempo por Palabra (segundos)</label>
+                                <select id="timePerWord" class="form-select">
+                                    <option value="10">10 segundos</option>
+                                    <option value="15" selected>15 segundos</option>
+                                    <option value="20">20 segundos</option>
+                                    <option value="30">30 segundos</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="maxPlayers" class="form-label">Máximo de Jugadores</label>
+                                <select id="maxPlayers" class="form-select">
+                                    <option value="2">2 jugadores</option>
+                                    <option value="4" selected>4 jugadores</option>
+                                    <option value="6">6 jugadores</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="numQuestions" class="form-label">Número de Preguntas</label>
+                                <select id="numQuestions" class="form-select">
+                                    <option value="5">5 preguntas</option>
+                                    <option value="10" selected>10 preguntas</option>
+                                    <option value="15">15 preguntas</option>
+                                    <option value="20">20 preguntas</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" id="allowSpectators">
+                                    Permitir espectadores
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelSettingsBtn">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="saveSettingsBtn">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Private Room Modal */
+            <div class="modal hidden" id="createPrivateModal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Crear Sala Privada</h2>
+                        <button class="modal-close" id="modalCloseCreate">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createPrivateForm">
+                            <div class="form-group">
+                                <label for="privateRoomName" class="form-label">Nombre de la Sala</label>
+                                <input type="text" id="privateRoomName" class="form-input" placeholder="Ej: Sala de Ana">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="privateRoomLevel" class="form-label">Nivel de Dificultad</label>
+                                <select id="privateRoomLevel" class="form-select">
+                                    <option value="a1">A1 - Principiante</option>
+                                    <option value="a2">A2 - Básico</option>
+                                    <option value="b1">B1 - Intermedio</option>
+                                    <option value="b2">B2 - Intermedio Alto</option>
+                                    <option value="c1">C1 - Avanzado</option>
+                                    <option value="mixed" selected>Mixto (A1 - B2)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="privateTimePerWord" class="form-label">Tiempo por Palabra</label>
+                                <select id="privateTimePerWord" class="form-select">
+                                    <option value="10">10 segundos</option>
+                                    <option value="15" selected>15 segundos</option>
+                                    <option value="20">20 segundos</option>
+                                    <option value="30">30 segundos</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelCreateBtn">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="createPrivateRoomBtn">Crear Sala</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer footer-minimal">
+        <div class="container">
+            <p class="copyright">© 2024 Bustabieren. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/competition.js"></script>
+</body>
+</html>

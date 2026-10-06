@@ -1,0 +1,329 @@
+{
+  "level": "A1",
+  "name": "Principiante",
+  "description": "Palabras básicas del alemán para principiantes",
+  "words": [
+    {
+      "id": 1,
+      "word": "Apfel",
+      "translation": "Manzana",
+      "audio": "apfel.mp3",
+      "category": "Comida",
+      "difficulty": 1
+    },
+    {
+      "id": 2,
+      "word": "Buch",
+      "translation": "Libro",
+      "audio": "buch.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 3,
+      "word": "Haus",
+      "translation": "Casa",
+      "audio": "haus.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 4,
+      "word": "Katze",
+      "translation": "Gato",
+      "audio": "katze.mp3",
+      "category": "Animales",
+      "difficulty": 1
+    },
+    {
+      "id": 5,
+      "word": "Hund",
+      "translation": "Perro",
+      "audio": "hund.mp3",
+      "category": "Animales",
+      "difficulty": 1
+    },
+    {
+      "id": 6,
+      "word": "Wasser",
+      "translation": "Agua",
+      "audio": "wasser.mp3",
+      "category": "Bebidas",
+      "difficulty": 1
+    },
+    {
+      "id": 7,
+      "word": "Brot",
+      "translation": "Pan",
+      "audio": "brot.mp3",
+      "category": "Comida",
+      "difficulty": 1
+    },
+    {
+      "id": 8,
+      "word": "Milch",
+      "translation": "Leche",
+      "audio": "milch.mp3",
+      "category": "Bebidas",
+      "difficulty": 1
+    },
+    {
+      "id": 9,
+      "word": "Ei",
+      "translation": "Huevo",
+      "audio": "ei.mp3",
+      "category": "Comida",
+      "difficulty": 1
+    },
+    {
+      "id": 10,
+      "word": "Tisch",
+      "translation": "Mesa",
+      "audio": "tisch.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 11,
+      "word": "Stuhl",
+      "translation": "Silla",
+      "audio": "stuhl.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 12,
+      "word": "Lampe",
+      "translation": "Lámpara",
+      "audio": "lampe.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 13,
+      "word": "Fenster",
+      "translation": "Ventana",
+      "audio": "fenster.mp3",
+      "category": "Lugares",
+      "difficulty": 2
+    },
+    {
+      "id": 14,
+      "word": "Tür",
+      "translation": "Puerta",
+      "audio": "tuer.mp3",
+      "category": "Lugares",
+      "difficulty": 1
+    },
+    {
+      "id": 15,
+      "word": "Bett",
+      "translation": "Cama",
+      "audio": "bett.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 16,
+      "word": "Schrank",
+      "translation": "Armario",
+      "audio": "schrank.mp3",
+      "category": "Objetos",
+      "difficulty": 2
+    },
+    {
+      "id": 17,
+      "word": "Bild",
+      "translation": "Cuadro",
+      "audio": "bild.mp3",
+      "category": "Objetos",
+      "difficulty": 1
+    },
+    {
+      "id": 18,
+      "word": "Blume",
+      "translation": "Flor",
+      "audio": "blume.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 19,
+      "word": "Baum",
+      "translation": "Árbol",
+      "audio": "baum.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 20,
+      "word": "Sonne",
+      "translation": "Sol",
+      "audio": "sonne.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 21,
+      "word": "Mond",
+      "translation": "Luna",
+      "audio": "mond.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 22,
+      "word": "Stern",
+      "translation": "Estrella",
+      "audio": "stern.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 23,
+      "word": "Himmel",
+      "translation": "Cielo",
+      "audio": "himmel.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 24,
+      "word": "Erde",
+      "translation": "Tierra",
+      "audio": "erde.mp3",
+      "category": "Naturaleza",
+      "difficulty": 1
+    },
+    {
+      "id": 25,
+      "word": "Vater",
+      "translation": "Padre",
+      "audio": "vater.mp3",
+      "category": "Familia",
+      "difficulty": 1
+    },
+    {
+      "id": 26,
+      "word": "Mutter",
+      "translation": "Madre",
+      "audio": "mutter.mp3",
+      "category": "Familia",
+      "difficulty": 1
+    },
+    {
+      "id": 27,
+      "word": "Sohn",
+      "translation": "Hijo",
+      "audio": "sohn.mp3",
+      "category": "Familia",
+      "difficulty": 1
+    },
+    {
+      "id": 28,
+      "word": "Tochter",
+      "translation": "Hija",
+      "audio": "tochter.mp3",
+      "category": "Familia",
+      "difficulty": 2
+    },
+    {
+      "id": 29,
+      "word": "Bruder",
+      "translation": "Hermano",
+      "audio": "bruder.mp3",
+      "category": "Familia",
+      "difficulty": 1
+    },
+    {
+      "id": 30,
+      "word": "Schwester",
+      "translation": "Hermana",
+      "audio": "schwester.mp3",
+      "category": "Familia",
+      "difficulty": 2
+    },
+    {
+      "id": 31,
+      "word": "eins",
+      "translation": "Uno",
+      "audio": "eins.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 32,
+      "word": "zwei",
+      "translation": "Dos",
+      "audio": "zwei.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 33,
+      "word": "drei",
+      "translation": "Tres",
+      "audio": "drei.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 34,
+      "word": "vier",
+      "translation": "Cuatro",
+      "audio": "vier.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 35,
+      "word": "fünf",
+      "translation": "Cinco",
+      "audio": "fuenf.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 36,
+      "word": "sechs",
+      "translation": "Seis",
+      "audio": "sechs.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 37,
+      "word": "sieben",
+      "translation": "Siete",
+      "audio": "sieben.mp3",
+      "category": "Números",
+      "difficulty": 2
+    },
+    {
+      "id": 38,
+      "word": "acht",
+      "translation": "Ocho",
+      "audio": "acht.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 39,
+      "word": "neun",
+      "translation": "Nueve",
+      "audio": "neun.mp3",
+      "category": "Números",
+      "difficulty": 1
+    },
+    {
+      "id": 40,
+      "word": "zehn",
+      "translation": "Diez",
+      "audio": "zehn.mp3",
+      "category": "Números",
+      "difficulty": 1
+    }
+  ],
+  "totalWords": 40,
+  "categories": ["Comida", "Objetos", "Lugares", "Animales", "Bebidas", "Naturaleza", "Familia", "Números"]
+}

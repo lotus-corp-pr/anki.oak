@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicar - Bustabieren</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/practice.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐝</span>
+                <h1 class="logo-text">Bustabieren</h1>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Decks</a>
+                <a href="competition.html" class="nav-link">Competencia</a>
+            </nav>
+            <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <main class="practice-main">
+        <div class="container">
+            <div class="practice-header">
+                <h1 class="practice-title">Modo de <span class="highlight">Práctica</span></h1>
+                <p class="practice-subtitle">Selecciona un nivel y comienza a practicar</p>
+                
+                <div class="level-selector">
+                    <button class="level-btn active" data-level="a1">A1</button>
+                    <button class="level-btn" data-level="a2">A2</button>
+                    <button class="level-btn" data-level="b1">B1</button>
+                    <button class="level-btn" data-level="b2">B2</button>
+                    <button class="level-btn" data-level="c1">C1</button>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <!-- Practice Card -->
+                <div class="practice-card" id="practiceCard">
+                    <div class="card-header">
+                        <span class="card-level" id="currentLevel">Nivel: A1</span>
+                        <div class="card-counter" id="cardCounter">1 / 10</div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="audio-player">
+                            <button class="play-btn" id="playBtn" title="Reproducir audio">
+                                <span class="play-icon">▶</span>
+                                <span class="wave-icon">🎵</span>
+                            </button>
+                            <span class="audio-hint" id="audioHint">Escucha la palabra</span>
+                        </div>
+                        
+                        <div class="word-input-container">
+                            <label for="wordInput" class="word-label">Escribe la palabra en alemán:</label>
+                            <input 
+                                type="text" 
+                                id="wordInput" 
+                                class="word-input" 
+                                placeholder="Escribe aquí..."
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="off"
+                            />
+                            <div class="input-hint" id="inputHint"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <button class="btn btn-secondary" id="skipBtn">⏭ Omitir</button>
+                        <button class="btn btn-primary" id="submitBtn">✓ Verificar</button>
+                    </div>
+                </div>
+
+                <!-- Result Card (shown after answer) -->
+                <div class="result-card hidden" id="resultCard">
+                    <div class="result-icon" id="resultIcon"></div>
+                    <h2 class="result-title" id="resultTitle">¡Correcto!</h2>
+                    <p class="result-word" id="resultWord">Apfel</p>
+                    <p class="result-translation" id="resultTranslation">(Manzana)</p>
+                    
+                    <div class="result-details" id="resultDetails">
+                        <p>Tu respuesta: <span id="userAnswer"></span></p>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button class="btn btn-primary" id="nextBtn">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- Stats Sidebar -->
+                <div class="practice-stats">
+                    <h3 class="stats-title">Estadísticas</h3>
+                    
+                    <div class="stat-item">
+                        <span class="stat-label">Correctas</span>
+                        <span class="stat-value" id="correctCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Incorrectas</span>
+                        <span class="stat-value" id="incorrectCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Precisión</span>
+                        <span class="stat-value" id="accuracy">0%</span>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                    
+                    <div class="streak-counter">
+                        <span class="streak-icon">🔥</span>
+                        <span class="streak-text">Racha: <span id="streakCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deck Selection Modal -->
+            <div class="modal hidden" id="deckModal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Seleccionar Deck</h2>
+                        <button class="modal-close" id="modalClose">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="modal-description">Elige un deck específico o practica con todos:</p>
+                        <div class="deck-list" id="deckList">
+                            <!-- Decks will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="practice-settings">
+                <button class="settings-btn" id="settingsBtn" title="Configuración">⚙</button>
+                <div class="settings-panel hidden" id="settingsPanel">
+                    <div class="settings-item">
+                        <label for="autoPlay">
+                            <input type="checkbox" id="autoPlay" checked>
+                            <span>Reproducir audio automáticamente</span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <label for="caseSensitive">
+                            <input type="checkbox" id="caseSensitive">
+                            <span>Sensible a mayúsculas</span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <label for="showTranslation">
+                            <input type="checkbox" id="showTranslation" checked>
+                            <span>Mostrar traducción</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer footer-minimal">
+        <div class="container">
+            <p class="copyright">© 2024 Bustabieren. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/practice.js"></script>
+</body>
+</html>
