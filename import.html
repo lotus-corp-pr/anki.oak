@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar Palabras - Bustabieren</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/import.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐝</span>
+                <h1 class="logo-text">Bustabieren</h1>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="practice.html" class="nav-link">Practicar</a>
+                <a href="flashcards.html" class="nav-link">Flashcards</a>
+                <a href="competition.html" class="nav-link">Competencia</a>
+            </nav>
+            <a href="index.html" class="btn btn-secondary">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <main class="import-main">
+        <div class="container">
+            <div class="import-header">
+                <h1 class="import-title">Importar <span class="highlight">Palabras</span></h1>
+                <p class="import-subtitle">Sube tu archivo Excel o CSV con palabras en alemán para crear tus flashcards</p>
+            </div>
+
+            <div class="import-container">
+                <!-- Step 1: Upload File -->
+                <div class="import-step" id="step1">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h2 class="step-title">Sube tu archivo</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="upload-area" id="uploadArea">
+                            <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+                            <div class="upload-icon">📁</div>
+                            <p class="upload-text">Arrastra y suelta tu archivo aquí o haz clic para buscar</p>
+                            <p class="upload-hint">Formatos soportados: CSV, Excel (.xlsx, .xls)</p>
+                            <button class="btn btn-primary" id="selectFileBtn">Seleccionar Archivo</button>
+                        </div>
+                        <div class="file-info hidden" id="fileInfo">
+                            <div class="file-icon">📄</div>
+                            <div class="file-details">
+                                <span class="file-name" id="fileName"></span>
+                                <span class="file-size" id="fileSize"></span>
+                            </div>
+                            <button class="btn btn-danger" id="removeFileBtn">× Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Configure Format -->
+                <div class="import-step hidden" id="step2">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h2 class="step-title">Configura el formato</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="format-options">
+                            <div class="format-option">
+                                <label class="format-label">
+                                    <input type="radio" name="fileFormat" value="csv" checked>
+                                    <span class="option-card">
+                                        <span class="option-icon">📊</span>
+                                        <span class="option-name">CSV</span>
+                                        <span class="option-desc">Archivo de valores separados por comas</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="format-option">
+                                <label class="format-label">
+                                    <input type="radio" name="fileFormat" value="excel">
+                                    <span class="option-card">
+                                        <span class="option-icon">📈</span>
+                                        <span class="option-name">Excel</span>
+                                        <span class="option-desc">Hoja de cálculo de Excel</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="delimiter-section">
+                            <label class="field-label">
+                                Separador de columnas (para CSV)
+                                <select id="delimiterSelect" class="form-select">
+                                    <option value=",">Coma (,)</option>
+                                    <option value=";">Punto y coma (;)</option>
+                                    <option value="\t">Tabulador</option>
+                                    <option value="|">Barra vertical (|)</option>
+                                </select>
+                            </label>
+                        </div>
+                        
+                        <div class="columns-mapping">
+                            <h3 class="mapping-title">Asignar columnas</h3>
+                            <p class="mapping-desc">Selecciona qué columna corresponde a cada campo:</p>
+                            
+                            <div class="mapping-grid">
+                                <div class="mapping-item">
+                                    <label class="mapping-label">Palabra en Alemán</label>
+                                    <select id="wordColumn" class="form-select">
+                                        <option value="">Seleccionar columna...</option>
+                                    </select>
+                                </div>
+                                <div class="mapping-item">
+                                    <label class="mapping-label">Traducción (opcional)</label>
+                                    <select id="translationColumn" class="form-select">
+                                        <option value="">Ninguna</option>
+                                    </select>
+                                </div>
+                                <div class="mapping-item">
+                                    <label class="mapping-label">Nivel de Dificultad</label>
+                                    <select id="levelColumn" class="form-select">
+                                        <option value="">Ninguna (usar por defecto)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="default-level">
+                                <label class="field-label">
+                                    Nivel por defecto
+                                    <select id="defaultLevel" class="form-select">
+                                        <option value="facil">Fácil</option>
+                                        <option value="medio" selected>Medio</option>
+                                        <option value="dificil">Difícil</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" id="backToStep1">← Atrás</button>
+                            <button class="btn btn-primary" id="continueToStep3">Continuar →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preview and Confirm -->
+                <div class="import-step hidden" id="step3">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h2 class="step-title">Vista previa y confirmación</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="preview-header">
+                            <p class="preview-count" id="previewCount">0 palabras importadas</p>
+                            <div class="preview-filters">
+                                <button class="filter-btn active" data-level="todos">Todas</button>
+                                <button class="filter-btn" data-level="facil">Fáciles</button>
+                                <button class="filter-btn" data-level="medio">Medias</button>
+                                <button class="filter-btn" data-level="dificil">Difíciles</button>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-table-container">
+                            <table class="preview-table" id="previewTable">
+                                <thead>
+                                    <tr>
+                                        <th>Palabra</th>
+                                        <th>Traducción</th>
+                                        <th>Nivel</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="previewTableBody">
+                                    <!-- Words will be shown here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="preview-stats">
+                            <div class="stat-badge">
+                                <span class="stat-label">Fáciles:</span>
+                                <span class="stat-value" id="facilCount">0</span>
+                            </div>
+                            <div class="stat-badge">
+                                <span class="stat-label">Medias:</span>
+                                <span class="stat-value" id="medioCount">0</span>
+                            </div>
+                            <div class="stat-badge">
+                                <span class="stat-label">Difíciles:</span>
+                                <span class="stat-value" id="dificilCount">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="step-actions">
+                            <button class="btn btn-secondary" id="backToStep2">← Atrás</button>
+                            <button class="btn btn-primary" id="confirmImport">Importar Palabras</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Success -->
+                <div class="import-step hidden" id="step4">
+                    <div class="step-header">
+                        <span class="step-number">✓</span>
+                        <h2 class="step-title">¡Importación exitosa!</h2>
+                    </div>
+                    <div class="step-content success-content">
+                        <div class="success-icon">🎉</div>
+                        <p class="success-message">
+                            Has importado <span id="importedCount" class="highlight">0</span> palabras correctamente.
+                        </p>
+                        <div class="success-details">
+                            <p>✅ <span id="successFacil">0</span> palabras fáciles</p>
+                            <p>✅ <span id="successMedio">0</span> palabras medias</p>
+                            <p>✅ <span id="successDificil">0</span> palabras difíciles</p>
+                        </div>
+                        <div class="success-actions">
+                            <a href="flashcards.html" class="btn btn-primary">Ver Flashcards</a>
+                            <a href="practice.html" class="btn btn-secondary">Practicar Ahora</a>
+                            <button class="btn btn-outline" id="importMore">Importar Más Palabras</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Subir</span>
+                        </div>
+                        <div class="progress-line" data-between="1-2"></div>
+                        <div class="progress-step" data-step="2">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Configurar</span>
+                        </div>
+                        <div class="progress-line" data-between="2-3"></div>
+                        <div class="progress-step" data-step="3">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Previsualizar</span>
+                        </div>
+                        <div class="progress-line" data-between="3-4"></div>
+                        <div class="progress-step" data-step="4">
+                            <span class="step-dot"></span>
+                            <span class="step-name">Completar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample CSV Download -->
+            <div class="sample-section">
+                <h3 class="sample-title">¿Necesitas ayuda?</h3>
+                <p class="sample-text">Descarga una plantilla de ejemplo para ver el formato correcto:</p>
+                <button class="btn btn-outline" id="downloadTemplate">Descargar Plantilla CSV</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer footer-minimal">
+        <div class="container">
+            <p class="copyright">© 2024 Bustabieren. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/import.js"></script>
+</body>
+</html>

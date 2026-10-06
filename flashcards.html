@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - Bustabieren</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/flashcards.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐝</span>
+                <h1 class="logo-text">Bustabieren</h1>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="practice.html" class="nav-link">Practicar</a>
+                <a href="#" class="nav-link">Flashcards</a>
+                <a href="competition.html" class="nav-link">Competencia</a>
+            </nav>
+            <a href="import.html" class="btn btn-primary">+ Importar Palabras</a>
+        </div>
+    </header>
+
+    <main class="flashcards-main">
+        <div class="container">
+            <div class="flashcards-header">
+                <h1 class="flashcards-title">Tus <span class="highlight">Flashcards</span></h1>
+                <p class="flashcards-subtitle">Practica con tarjetas de vocabulario y escucha la pronunciación</p>
+                
+                <div class="flashcards-controls">
+                    <div class="controls-group">
+                        <label class="control-label">Filtrar por nivel:</label>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-level="todos">Todas</button>
+                            <button class="filter-btn" data-level="facil">Fáciles</button>
+                            <button class="filter-btn" data-level="medio">Medias</button>
+                            <button class="filter-btn" data-level="dificil">Difíciles</button>
+                        </div>
+                    </div>
+                    
+                    <div class="controls-group">
+                        <label class="control-label">Ordenar por:</label>
+                        <select id="sortSelect" class="form-select">
+                            <option value="random">Aleatorio</option>
+                            <option value="abc">A-Z (Palabra)</option>
+                            <option value="level">Nivel de dificultad</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flashcards-stats">
+                    <span class="stat-item">
+                        <strong id="totalWords">0</strong> palabras en total
+                    </span>
+                    <span class="stat-separator">|</span>
+                    <span class="stat-item">
+                        <strong id="currentIndex">0</strong> / <strong id="totalIndex">0</strong>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flashcards-container">
+                <!-- Flashcard Display -->
+                <div class="flashcard-display" id="flashcardDisplay">
+                    <div class="flashcard" id="flashcard" onclick="flipCard()">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <!-- Front Side -->
+                            <div class="flashcard-front" id="flashcardFront">
+                                <div class="card-content">
+                                    <div class="card-level-badge" id="cardLevelBadge">Nivel: Medio</div>
+                                    <div class="card-word" id="cardWord">Palabra</div>
+                                    <div class="card-hint">Haz clic para voltear y ver la traducción</div>
+                                    <div class="card-actions">
+                                        <button class="action-btn speak-btn" id="speakBtn" title="Escuchar pronunciación">🔊</button>
+                                        <button class="action-btn shuffle-btn" id="shuffleBtn" title="Barajar tarjetas">🔀</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Back Side -->
+                            <div class="flashcard-back" id="flashcardBack">
+                                <div class="card-content">
+                                    <div class="card-level-badge" id="cardLevelBadgeBack">Nivel: Medio</div>
+                                    <div class="card-word" id="cardWordBack">Palabra</div>
+                                    <div class="card-translation" id="cardTranslation">Traducción</div>
+                                    <div class="card-actions">
+                                        <button class="action-btn speak-btn" id="speakBtnBack" title="Escuchar pronunciación">🔊</button>
+                                        <button class="action-btn next-btn" id="nextBtn" title="Siguiente tarjeta">→</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flashcard-nav">
+                        <button class="nav-btn" id="prevBtn">← Anterior</button>
+                        <button class="nav-btn" id="nextBtnNav">Siguiente →</button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="emptyState">
+                    <div class="empty-icon">📚</div>
+                    <h2 class="empty-title">No hay palabras importadas</h2>
+                    <p class="empty-message">Importa palabras desde un archivo Excel o CSV para empezar a practicar</p>
+                    <a href="import.html" class="btn btn-primary">Importar Palabras</a>
+                </div>
+
+                <!-- Word List -->
+                <div class="word-list-container" id="wordListContainer">
+                    <div class="word-list-header">
+                        <h3 class="word-list-title">Lista de Palabras</h3>
+                        <button class="toggle-list-btn" id="toggleListBtn">↑ Ocultar</button>
+                    </div>
+                    <div class="word-list" id="wordList">
+                        <!-- Words will be listed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div class="modal hidden" id="settingsModal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Configuración de Flashcards</h2>
+                        <button class="modal-close" id="modalCloseSettings">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="settings-grid">
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="autoSpeak" checked>
+                                    <span>Hablar automáticamente al voltear</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="autoFlip">
+                                    <span>Voltear automáticamente después de 5 segundos</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="showTranslationFirst" checked>
+                                    <span>Mostrar traducción primero</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    Voz:
+                                    <select id="voiceSelect" class="form-select">
+                                        <option value="">Voz por defecto (Alemán)</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancelSettingsBtn">Cancelar</button>
+                        <button class="btn btn-primary" id="saveSettingsBtn">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer footer-minimal">
+        <div class="container">
+            <p class="copyright">© 2024 Bustabieren. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/flashcards.js"></script>
+</body>
+</html>
